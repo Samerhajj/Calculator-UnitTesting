@@ -1,0 +1,517 @@
+﻿<Window WindowStartupLocation="CenterScreen"
+    x:Class="ScientificCalc.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ScientificCalc"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Scientific Calculator"
+    Width="500"
+    Height="650"
+    BorderBrush="White"
+    BorderThickness="2"
+    PreviewKeyDown="Window_KeyDown"
+    mc:Ignorable="d">
+    <Grid Background="#FF00A31F">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="14*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="31*" />
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="430*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--  Error Warning  -->
+        <Viewbox
+            x:Name="errorDisplay"
+            Grid.Row="0"
+            Grid.Column="2"
+            HorizontalAlignment="Right"
+            Opacity="0" Margin="0,0,0.4,0.4">
+            <TextBlock Foreground="Red" Text="Invalid statement!" />
+        </Viewbox>
+
+        <!--  Displays Current Expression  -->
+        <Viewbox
+            Grid.Column="2"
+            HorizontalAlignment="Right" Margin="0,30,0.4,0.2" Grid.RowSpan="2">
+            <TextBlock Name="ResultBox"  Foreground="White" Text="{Binding Display, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
+        </Viewbox>
+        
+
+        <!--  Button Grid  -->
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,60.6,0.4,-0.4" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Row 0  -->
+            <Button
+                x:Name="A"
+                Content="A"
+                Grid.Row="0"
+                Grid.Column="0" Click="A_Click"
+                Width="95"
+               >
+            </Button>
+            <Button
+                x:Name="B"
+                Content="B"
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="95"
+                Click="B_CLICK">
+                
+
+            </Button>
+            <Button
+                x:Name="c"
+                Content="C"
+                Grid.Row="0"
+                Width="95"
+                Grid.Column="2"
+                Click="CHex_Click"
+                >
+            </Button>
+            <Button
+                x:Name="D"
+                Content="D"
+                Grid.Row="0"
+                Grid.Column="3"
+                Width="95"
+                Click="D_CLICK"
+                >
+            </Button>
+            <Button
+                x:Name="E"
+                Content="E"
+                Grid.Row="0"
+                Grid.Column="4"
+                Width="95"
+                Click="E_CLICK"
+                >
+            </Button>
+
+            <!--  Row 1  -->
+            <Button
+                x:Name="Binary"
+                Content="Binary"
+                Grid.Row="1"
+                Grid.Column="0"
+                Width="95"
+                Click="Binary_Click">
+            </Button>
+            <Button
+                x:Name="Octal"
+                Content="Octal"
+                Grid.Row="1"
+                Width="95"
+                Grid.Column="1"
+                Click="Octal_Click">
+
+            </Button>
+            <Button
+                x:Name="Decimal"
+                Content="Decimal"
+                Grid.Row="1"
+                Width="95"
+                Grid.Column="2"
+                Click="base10_Click">
+            </Button>
+            <Button
+                x:Name="Hex"
+                Grid.Row="1"
+                Grid.Column="3"
+                Content="Hex"
+                Width="95"
+                
+                Click="Hex_Click">
+            </Button>
+            <Button
+                x:Name="F"
+                Content="F"
+                Grid.Row="1"
+                Grid.Column="4"
+                Width="95"
+                Click="F_Click">
+            </Button>
+
+            <!--  Row 2  -->
+            <Button
+                x:Name="squared"
+                Grid.Row="2"
+                Grid.Column="0"
+                Width="95"
+                Content="^2"
+                Click="Squared_Click">
+               
+            </Button>
+            <Button
+                x:Name="xToTheY"
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="95"
+                Content="Pow"
+                Click="XToTheY_Click">
+            </Button>
+            <Button
+                x:Name="sin"
+                Grid.Row="2"
+                Width="95"
+                Content="Sin"
+                Grid.Column="2"
+                Click="Sin_Click">
+            </Button>
+            <Button
+                x:Name="cos"
+                Grid.Row="2"
+                Grid.Column="3"
+                Content="cos"
+                Width="95"
+                x:FieldModifier="public"
+                Click="Cos_Click">
+                
+            </Button>
+            <Button
+                x:Name="tan"
+                Grid.Row="2"
+                Grid.Column="4"
+                Width="95"
+                Content="Tan"
+                Click="Tan_Click">
+            </Button>
+
+            <!--  Row 3  -->
+            <Button
+                x:Name="squareRoot"
+                Grid.Row="3"
+                Grid.Column="0"
+                Content="SquareRoot"
+                Width="95"
+                Click="SquareRoot_Click">
+            </Button>
+            <Button
+                x:Name="TenToX"
+                Grid.Row="3"
+                Grid.Column="1"
+                Content="10^"
+                Width="95"
+                Click="TenToX_Click">
+            </Button>
+            <Button
+                x:Name="log"
+                Grid.Row="3"
+                Grid.Column="2"
+                Content="Log"
+                Width="95"
+                Click="Log_Click">
+            </Button>
+            <Button
+                x:Name="ln"
+                Grid.Row="3"
+                Width="95"
+                Grid.Column="3"
+                Content="ln"
+                Click="Ln_Click">
+            </Button>
+            <Button
+                x:Name="mod"
+                Grid.Row="3"
+                Grid.Column="4"
+                Width="95"
+                Content="Percentage"
+                Click="Mod_Click">
+            </Button>
+
+            <!--  Row 4  -->
+            <Button
+                x:Name="pi"
+                Grid.Row="4"
+                Grid.Column="0"
+                Content="PI"
+                Width="95"
+                Click="Pi_Click">
+                
+            </Button>
+           
+            <Button
+                x:Name="CE"
+                Grid.Row="4"
+                Grid.Column="1"
+                Width="95"
+                Click="CE_Click">
+                <Image Source="images/buttons/func_clear_entry.png" Stretch="Fill" />
+            </Button>
+            <Button
+                x:Name="C"
+                Grid.Row="4"
+                Grid.Column="2"
+                Width="95"
+                x:FieldModifier="public"
+                Click="C_Click">
+                <Image Source="images/buttons/func_clear.png" Stretch="Fill" />
+            </Button>
+            <Button
+                x:Name="back"
+                Grid.Row="4"
+                Grid.Column="3"
+                Width="95"
+                Click="Back_Click">
+                <Image Source="images/buttons/backspace.png" Stretch="Fill" />
+            </Button>
+            <Button
+                x:Name="div"
+                Grid.Row="4"
+                Grid.Column="4"
+                Width="95"
+                Click="Div_Click">
+                <Image Source="images/buttons/op_div.png" Stretch="Fill" />
+            </Button>
+
+            <!--  Row 5  -->
+            <Button
+                Content="Scientific"
+                Grid.Row="5"
+                Width="95"
+                Grid.Column="0"
+                Click="ButtonScientific_Click">
+               
+            </Button>
+            <Button
+                x:Name="seven"
+                Grid.Row="5"
+                Content="7"
+                Grid.Column="1"
+                Click="Seven_Click">
+            </Button>
+            <Button
+                x:Name="eight"
+                Grid.Row="5"
+                Grid.Column="2"
+                Content="8"
+                Click="Eight_Click">
+            </Button>
+            <Button
+                x:Name="nine"
+                Grid.Row="5"
+                Grid.Column="3"
+                Content="9"
+                Click="Nine_Click">
+            </Button>
+            <Button
+                x:Name="mult"
+                Grid.Row="5"
+                Width="95"
+                Grid.Column="4"
+                Click="Mult_Click">
+                <Image Source="images/buttons/op_mult.png" Stretch="Fill" />
+            </Button>
+
+            <!--  Row 6  -->
+            <Button
+                IsEnabled="True"
+                x:Name="Standard"
+                Content="Standard"
+                Grid.Row="6"
+                Grid.Column="0"
+                Width="95"
+                Margin="0,0.4,0,0"
+                HorizontalAlignment="Left"
+                Click="Standard_Click">
+               
+
+            </Button>
+          
+
+            <Button
+                x:Name="four"
+                Grid.Row="6"
+                Grid.Column="1"
+                Content="4"
+                
+                Click="Four_Click">
+                <Button.Width>
+                    <Binding ElementName="Standard" Path="ActualWidth"/>
+                </Button.Width>
+
+            </Button>
+            <Button
+                x:Name="five"
+                Grid.Row="6"
+                Grid.Column="2"
+                Content="5"
+                Width="95"
+                Click="Five_Click">
+            </Button>
+            <Button
+                x:Name="six"
+                Content="6"
+                Grid.Row="6"
+                Grid.Column="3"
+                Width="95"
+                Click="Six_Click">
+            </Button>
+            <Button
+                x:Name="minus"
+                
+                Grid.Row="6"
+                Grid.Column="4"
+                Width="95"
+                Click="Minus_Click">
+                <Image Source="images/buttons/op_minus.png" Stretch="Fill" />
+            </Button>
+
+            <!--  Row 7  -->
+            <Button
+                x:Name="Programming"
+                Content="Programming"
+                Grid.Row="7"
+                Width="95"
+                Grid.Column="0"
+                Click="ProgrammingClick" Height="57" Margin="0,0.4,0.4,0" VerticalAlignment="Top">
+            </Button>
+            <Button
+                x:Name="one"
+                Content="1"
+                Grid.Row="7"
+                Grid.Column="1"
+                Width="95"
+                Click="One_Click">
+            </Button>
+            <Button
+                x:Name="two"
+                Grid.Row="7"
+                Grid.Column="2"
+                Width="95"
+                Content="2"
+                Click="Two_Click">
+                
+            </Button>
+            <Button
+                x:Name="three"
+                Grid.Row="7"
+                Width="95"
+                Grid.Column="3"
+                Content="3"
+                Click="Three_Click">
+            </Button>
+            <Button
+                x:Name="plus"
+                Grid.Row="7"
+                Grid.Column="4"
+                Width="95"
+                Click="Plus_Click">
+
+                <Image Source="images/buttons/op_plus.png" Stretch="Fill" />
+            </Button>
+
+            <!--  Row 8  -->
+            <Button
+                x:Name="open_par"
+                Grid.Row="8"
+                Grid.Column="0"
+                Width="95"
+                Click="Open_par_Click">
+                <Image Source="images/buttons/expr_left_par.png" Stretch="Fill" />
+            </Button>
+            <Button
+                x:Name="close_par"
+                Grid.Row="8"
+                Grid.Column="1"
+                Width="95"
+                Click="Close_par_Click">
+                <Image Source="images/buttons/expr_right_par.png" Stretch="Fill" />
+            </Button>
+            <Button
+                x:Name="zero"
+                Grid.Row="8"
+                Width="95"
+                Grid.Column="2"
+                Content="0"
+                Click="Zero_Click">
+            </Button>
+            <Button
+                x:Name="decimal"
+                Grid.Row="8"
+                Width="95"
+                Grid.Column="3"
+                Click="Decimal_Click">
+                <Image Source="images/buttons/num_dec.png" Stretch="Fill" />
+            </Button>
+            <Button
+                x:Name="equal"
+                Grid.Row="8"
+                Grid.Column="4"
+                Width="95"
+                Click="Equal_Click">
+                <Image Source="images/buttons/eval_equal.png" Stretch="Fill" />
+            </Button>
+
+            <!--  Row 9  -->
+            <Button
+                x:Name="Exp"
+                Grid.Row="9"
+                Grid.Column="0"
+                Width="95"
+                Content="Exp"
+                Click="Exp_Click">
+            </Button>
+            <Button
+                x:Name="Abs"
+                Width="95"
+                Grid.Row="9"
+                Grid.Column="1"
+                Content="Abs"
+                Click="Abs_Click">
+            </Button>
+            <Button
+                x:Name="Radian"
+                Width="95"
+                Grid.Row="9"
+                Grid.Column="2"
+                Content="Rad"
+                Click="Radian_Click">
+
+            </Button>
+                <Button
+                x:Name="Degree"
+                Width="95"
+                Grid.Row="9"
+                Grid.Column="3"
+                Content="Deg"
+                Click="Degree_Click">
+
+                </Button>
+            <Button
+                x:Name="returnExpression"
+                Width="95"
+                Grid.Row="9"
+                Grid.Column="4"
+                Content="returnExpression"
+                Click="returnExpression_Click">
+
+            </Button>
+        </Grid>
+    </Grid>
+
+</Window>
