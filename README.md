@@ -4,14 +4,16 @@ A humble calculator app similar to the default one in Windows 10 built using WPF
 
 ## Motivation
 
-We created this small project with three objectives:
+This project was made for few reasons:
 
 1. Gain experience with creating a gui-based program utilizing WPF.
 2. Write some (basic, non-exhaustive) unit tests to run against a C# program as I developed it.
 3. Become more accustomed to using Visual Studio 2019 as a development environment.
 
-In its current state, the project is fairly unpolished and there are a few obscure bugs waiting to be found (mostly dealing with keyboard input). I have already achieved the goals I wanted from it, so I do not intend to develop further.
-
+## Unit Testing
+1.Learned the fundamentals of unit testing in c#
+Applied white and black box testing for both the UI and functionality
+Added Acceptance testing 
 
 
 #### Running
